@@ -9,6 +9,8 @@ import org.springframework.http.client.OkHttp3ClientHttpRequestFactory;
 
 import okhttp3.OkHttpClient;
 
+import static com.boo.pinning.ClientType.Type.OK_HTTP;
+
 @Configuration
 public class RequestFactoryConfig {
 
@@ -19,7 +21,7 @@ public class RequestFactoryConfig {
   private String pin;
 
   @Bean
-  @Qualifier("OKSpringCommonsRestTemplate")
+  @ClientType(OK_HTTP)
   public ClientHttpRequestFactory createOKCommonsRequestFactory() {
     OkHttpClientFactoryImpl httpClientFactory = new OkHttpClientFactoryImpl();
     OkHttpClient client = httpClientFactory.createBuilder(false, hostname, pin).build();
