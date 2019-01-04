@@ -24,18 +24,7 @@ public class OkHttpClientFactoryImpl implements OkHttpClientFactory {
   @Override
   public OkHttpClient.Builder createBuilder(boolean disableSslValidation) {
 
-    String hostname = "publicobject.com";
-     CertificatePinner certificatePinner = new CertificatePinner.Builder()
-     .add(hostname, pin)
-     .build();
-
-//    CertificatePinner certificatePinner = new CertificatePinner.Builder()
-//        .add("publicobject.com", "sha256/afwiKY3RxoMmLkuRW1l7QsPZTJPwDS2pdDROQjXw8ig=")
-//        .add("publicobject.com", "sha256/klO23nT2ehFDXCfx3eHTDRESMz3asj1muO+4aIdjiuY=")
-//        .add("publicobject.com", "sha256/grX4Ta9HpZx6tSHkmCrvpApTQGo67CYDnvprLg5yRME=")
-//        .add("publicobject.com", "sha256/lCppFqbkrlJ3EcVFAkeip0+44VaoJUymbnOaEUk7tEU=")
-//        .build();
-
+    CertificatePinner certificatePinner = new CertificatePinner.Builder().add(hostname, pin).build();
     OkHttpClient.Builder builder = new OkHttpClient.Builder();
     ConnectionPool okHttpConnectionPool = new ConnectionPool(50, 30, TimeUnit.SECONDS);
     builder.connectionPool(okHttpConnectionPool);
